@@ -46,7 +46,7 @@ class Discriminator(nn.Module):
 class Generator(nn.Module):
     def __init__(self, z_dim, channels_img, features_g):
         super().__init__()
-        self.net = nn.Sequential(
+        self.gen = nn.Sequential(
             self._block(z_dim, features_g*16, 4, 1, 0), # N x f_g*16 x 4 x 4
             self._block(features_g*16, features_g*8, 4, 2, 1), # 8x8 
             self._block(features_g*8, features_g*4, 4, 2, 1), # 16x16 
@@ -71,6 +71,9 @@ class Generator(nn.Module):
             nn.ReLU(),
         )
     
+    def forward(self, x):
+        return self.gen(x)
+    
 def inintialize_weights(model):
     for m in model.modules():
         if isinstance(m, (nn.Conv2d, nn.ConvTranspose2d, nn.BatchNorm2d)):
@@ -83,6 +86,12 @@ def test():
     disc = Discriminator(in_channels, 8)
     inintialize_weights(disc)
     assert disc(x).shape == (N, 1, 1, 1)
+
+    gen = Generator(z_dim, in_channels, 8)
+    inintialize_weights(gen)
+    z = torch.randn((N, z_dim, 1, 1))
+    assert gen(z).shape == (N, in_channels, H, W)
+    print("Success")
 
 
 
