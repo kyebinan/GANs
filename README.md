@@ -8,11 +8,15 @@ Welcome to a comprehensive exploration of various Generative Adversarial Network
 Inspired by the groundbreaking paper [Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks](https://github.com/kyebinan/GANs/blob/main/papers/1511.06434.pdf)  by Alec Radford, Luke Metz, and Soumith Chintala, this project aims to provide a clear and educational implementation of a DCGAN for generating realistic images. DCGANs have demonstrated remarkable success in generating high-quality, diverse images, making them a cornerstone in the field of generative deep learning. In this repository, you'll find the Python code for training a DCGAN model, along with explanations, comments, and potential extensions for further exploration. As an exciting twist, I'll be using this DCGAN to generate images of Pokémon, adding a playful and imaginative element to the project. I'll let you look at the project's [Notebook](https://github.com/kyebinan/GANs/blob/main/DCGAN/nb_dcgan.ipynb).
 Whether you're a beginner looking to understand the fundamentals of GANs or an enthusiast eager to experiment with your own image generation, this implementation is designed to be both informative and accessible. Join me on this journey into the world of generative adversarial networks, and let's explore the fascinating realm of artificial creativity together. Feel free to contribute, ask questions, or use this code as a starting point for your own projects. Happy coding!
 
-![mnist_fake](https://github.com/kyebinan/GANs/assets/155234248/536085cb-2d3b-416e-a76b-22b05d280a2b)
-![mnist_real](https://github.com/kyebinan/GANs/assets/155234248/0425c44c-e2ec-453e-a00f-a4b1672c1447)
+<p align="center">
+  <img src="https://github.com/kyebinan/GANs/assets/155234248/536085cb-2d3b-416e-a76b-22b05d280a2b" width="400" height="400" alt="MNIST Fake"/>
+  <img src="https://github.com/kyebinan/GANs/assets/155234248/0425c44c-e2ec-453e-a00f-a4b1672c1447" width="400" height="400" alt="MNIST Real"/>
+</p>
+<p align="center">
+  <img src="https://github.com/kyebinan/GANs/assets/155234248/dcfbf215-e76f-4a5e-bda2-94097ac9c98f" width="400" height="400" alt="Pokemon Fake"/>
+  <img src="https://github.com/kyebinan/GANs/assets/155234248/75b651b3-5390-4a2c-87d5-3d15c9e66845" width="400" height="400" alt="Pokemon Real"/>
+</p>
 
-![pokemon_fake](https://github.com/kyebinan/GANs/assets/155234248/dcfbf215-e76f-4a5e-bda2-94097ac9c98f)
-![pokemon_real](https://github.com/kyebinan/GANs/assets/155234248/75b651b3-5390-4a2c-87d5-3d15c9e66845)
 
 ## 2- Bicycle Generative Adversarial Network (BiCycleGAN)
 BiCycleGAN, short for Bicycle Generative Adversarial Network, is an intriguing extension of the traditional GAN architecture, aiming to enhance the generator's capability to generate diverse outputs while maintaining a certain level of control. Introduced in the paper "Toward Multimodal Image-to-Image Translation" by Jun-Yan Zhu et al., BiCycleGAN introduces a bidirectional consistency loss, where the generator not only generates images from input data but also reconstructs the original input from the generated output. This bidirectional mapping helps enforce a more structured and controllable image-to-image translation process. The generator is trained to not only generate diverse outputs but also ensure that these outputs can be accurately reconstructed back to the original input. This added constraint contributes to improved stability and controllability in the generated results. The repository associated with this section provides an implementation of BiCycleGAN, along with insights into its architecture, training process, and potential applications. Whether you're interested in multimodal image translation or wish to explore advanced GAN architectures, BiCycleGAN offers a fascinating avenue for experimentation and learning. Dive into the code, explore the bidirectional consistency concept, and discover the unique capabilities of BiCycleGAN.
