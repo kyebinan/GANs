@@ -149,7 +149,7 @@ class Generator(nn.Module):
     def forward(self, x):
         return self.gen(x)
     
-def inintialize_weights(model):
+def initialize_weights(model):
     """
     Initializes the weights of convolutional and batch normalization layers in a PyTorch model 
     using a normal distribution with mean 0.0 and standard deviation 0.02. This initialization 
@@ -186,11 +186,11 @@ def test():
     z_dim = 100
     x = torch.randn((N, in_channels, H, W))
     disc = Discriminator(in_channels, 8)
-    inintialize_weights(disc)
+    initialize_weights(disc)
     assert disc(x).shape == (N, 1, 1, 1)
 
     gen = Generator(z_dim, in_channels, 8)
-    inintialize_weights(gen)
+    initialize_weights(gen)
     z = torch.randn((N, z_dim, 1, 1))
     assert gen(z).shape == (N, in_channels, H, W)
     print("Success")
