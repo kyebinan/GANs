@@ -7,6 +7,7 @@ import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
 from dcgan import Discriminator, Generator, initialize_weights
+from utils import PokemonDataset
 
 device = torch.device("cuda" if torch.cuda.is_available else "cpu")
 
@@ -29,8 +30,10 @@ transforms = transforms.Compose(
     ]
 )
 
-dataset = datasets.MNIST(root="dataset/", train=True, transform=transforms, download=True)
-loader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True)
+# dataset = datasets.MNIST(root="dataset/", train=True, transform=transforms, download=True)
+
+dataset = PokemonDataset(image_dir="pokemon/images/images/", transform=transforms)
+dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True)
 
 gen = Generator(NOISE_DIM, CHANNELS_IMG, FEATURES_GEN).to(device)
 disc = Discriminator(CHANNELS_IMG, FEATURES_DISC).to(device)
