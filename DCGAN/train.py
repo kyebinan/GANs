@@ -7,7 +7,7 @@ import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
 from dcgan import Discriminator, Generator, initialize_weights
-from utils import PokemonDataset
+
 
 device = torch.device("cuda" if torch.cuda.is_available else "cpu")
 
