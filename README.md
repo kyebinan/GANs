@@ -10,6 +10,7 @@ Whether you're a beginner looking to understand the fundamentals of GANs or an e
 
 ![mnist_fake](https://github.com/kyebinan/GANs/assets/155234248/536085cb-2d3b-416e-a76b-22b05d280a2b)
 ![mnist_real](https://github.com/kyebinan/GANs/assets/155234248/0425c44c-e2ec-453e-a00f-a4b1672c1447)
+
 ![pokemon_fake](https://github.com/kyebinan/GANs/assets/155234248/dcfbf215-e76f-4a5e-bda2-94097ac9c98f)
 ![pokemon_real](https://github.com/kyebinan/GANs/assets/155234248/75b651b3-5390-4a2c-87d5-3d15c9e66845)
 
