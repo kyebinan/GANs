@@ -4,7 +4,7 @@ import torch.optim as optim
 import torchvision
 import torchvision.datasets as datasets
 import torchvision.transforms as transforms
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader 
 from torch.utils.tensorboard import SummaryWriter
 from dcgan import Discriminator, Generator, initialize_weights
 
@@ -12,18 +12,17 @@ from dcgan import Discriminator, Generator, initialize_weights
 device = torch.device("cuda" if torch.cuda.is_available else "cpu")
 
 LEARNING_RATE = 2e-4
-BATCH_SIZE = 16
+BATCH_SIZE = 32
 IMAGE_SIZE = 64
 CHANNELS_IMG = 3
 NOISE_DIM = 100
-NUM_EPOCHS = 128
+NUM_EPOCHS = 512
 FEATURES_DISC = 64
 FEATURES_GEN = 64
 
 
-transforms = transforms.Compose(
+transforms_mnist = transforms.Compose(
     [
-        torchvision.transforms.Lambda(lambda img: img.convert('RGB')),
         transforms.Resize(IMAGE_SIZE),
         transforms.ToTensor(),
         transforms.Normalize(
@@ -31,10 +30,22 @@ transforms = transforms.Compose(
     ]
 )
 
-# dataset = datasets.MNIST(root="dataset/", train=True, transform=transforms, download=True)
+transforms_pokemon = transforms.Compose([
+    # Data augmentation
+    transforms.RandomHorizontalFlip(p=1.0),  # Flip every image to get its mirror
+    transforms.RandomHorizontalFlip(p=0.5),  # Randomly flip images horizontally
+    transforms.RandomRotation(degrees=10),  # Randomly rotate images by +/- 10 degrees
+    transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),  # Randomly adjust brightness, contrast, saturation, and hue
+    
+    # Standard preprocessing
+    torchvision.transforms.Lambda(lambda img: img.convert('RGB')),
+    transforms.Resize(IMAGE_SIZE),
+    transforms.ToTensor(),
+    transforms.Normalize([0.5 for _ in range(CHANNELS_IMG)], [0.5 for _ in range(CHANNELS_IMG)]),
+])
 
-# dataset = PokemonDataset(image_dir="pokemon/images/images/", transform=transforms)
-dataset = datasets.ImageFolder(root=f"pokemon/images/images", transform=transforms)
+#dataset = datasets.MNIST(root="dataset/", train=True, transform=transforms_mnist, download=True)
+dataset = datasets.ImageFolder(root=f"pokemon/images/images", transform=transforms_pokemon)
 dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True)
 
 gen = Generator(NOISE_DIM, CHANNELS_IMG, FEATURES_GEN).to(device)
@@ -79,7 +90,7 @@ for epoch in range(NUM_EPOCHS):
         opt_gen.step()
 
         # Print losses occasionally and print to tensorboard
-        if batch_idx % 50 == 0:
+        if batch_idx % BATCH_SIZE  == 0:
             print(
                 f"Epoch [{epoch}/{NUM_EPOCHS}] Batch {batch_idx}/{len(dataloader)} \
                   Loss D: {loss_disc:.4f}, loss G: {loss_gen:.4f}"

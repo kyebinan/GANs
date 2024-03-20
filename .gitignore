@@ -36,6 +36,7 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 logs
+dataset
 
 # Unit test / coverage reports
 htmlcov/
