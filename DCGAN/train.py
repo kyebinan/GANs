@@ -12,17 +12,18 @@ from utils import PokemonDataset
 device = torch.device("cuda" if torch.cuda.is_available else "cpu")
 
 LEARNING_RATE = 2e-4
-BATCH_SIZE = 128
+BATCH_SIZE = 16
 IMAGE_SIZE = 64
-CHANNELS_IMG = 1
+CHANNELS_IMG = 3
 NOISE_DIM = 100
-NUM_EPOCHS = 5
+NUM_EPOCHS = 128
 FEATURES_DISC = 64
 FEATURES_GEN = 64
 
 
 transforms = transforms.Compose(
     [
+        torchvision.transforms.Lambda(lambda img: img.convert('RGB')),
         transforms.Resize(IMAGE_SIZE),
         transforms.ToTensor(),
         transforms.Normalize(
@@ -32,7 +33,8 @@ transforms = transforms.Compose(
 
 # dataset = datasets.MNIST(root="dataset/", train=True, transform=transforms, download=True)
 
-dataset = PokemonDataset(image_dir="pokemon/images/images/", transform=transforms)
+# dataset = PokemonDataset(image_dir="pokemon/images/images/", transform=transforms)
+dataset = datasets.ImageFolder(root=f"pokemon/images/images", transform=transforms)
 dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True)
 
 gen = Generator(NOISE_DIM, CHANNELS_IMG, FEATURES_GEN).to(device)
@@ -66,7 +68,7 @@ for epoch in range(NUM_EPOCHS):
         loss_disc_fake = criterion(disc_fake, torch.zeros_like(disc_fake))
         loss_disc = (loss_disc_real + loss_disc_fake) / 2
         disc.zero_grad()
-        loss_disc.backward()
+        loss_disc.backward(retain_graph=True)
         opt_disc.step()
 
         ### Train Generator: min log(1 - D(G(z))) <-> max log(D(G(z))
@@ -77,7 +79,7 @@ for epoch in range(NUM_EPOCHS):
         opt_gen.step()
 
         # Print losses occasionally and print to tensorboard
-        if batch_idx % 100 == 0:
+        if batch_idx % 50 == 0:
             print(
                 f"Epoch [{epoch}/{NUM_EPOCHS}] Batch {batch_idx}/{len(dataloader)} \
                   Loss D: {loss_disc:.4f}, loss G: {loss_gen:.4f}"

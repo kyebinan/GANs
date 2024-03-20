@@ -21,9 +21,10 @@ class PokemonDataset(Dataset):
 
     def __getitem__(self, idx):
         img_path = os.path.join(self.image_dir, self.images[idx])
-        image = Image.open(img_path).convert("RGB")  # Convert to RGB to ensure 3 channels
-        
+        image = Image.open(img_path)
+        if image.mode == 'P':  # Check if image is in palette mode
+            image = image.convert('RGBA')  # Convert to RGBA
+        image = image.convert('RGB')  # Ensure image is in RGB
         if self.transform:
             image = self.transform(image)
-        
         return image

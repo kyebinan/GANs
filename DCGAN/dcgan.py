@@ -69,7 +69,7 @@ class Discriminator(nn.Module):
                 padding,
                 bias=False
             ),
-            nn.BatchNorm2d(out_channels),
+            #nn.BatchNorm2d(out_channels),
             nn.LeakyReLU(0.2),
         )
     
