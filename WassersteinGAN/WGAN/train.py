@@ -7,7 +7,7 @@ import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 from torch.utils.tensorboard import SummaryWriter
-from WassersteinGAN.WGAN.model import Discriminator, Generator, initialize_weights
+from model import Discriminator, Generator, initialize_weights
 
 
 device = torch.device("cuda" if torch.cuda.is_available else "cpu")
@@ -17,7 +17,7 @@ BATCH_SIZE = 64
 IMAGE_SIZE = 64
 CHANNELS_IMG = 1
 Z_DIM = 128
-NUM_EPOCHS = 5
+NUM_EPOCHS = 128
 FEATURES_CRITIC = 64
 FEATURES_GEN = 64
 CRITIC_ITERATIONS = 5

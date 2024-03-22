@@ -1,9 +1,5 @@
 """
 Training of WGAN-GP
-
-Programmed by Aladdin Persson <aladdin.persson at hotmail dot com>
-* 2020-11-01: Initial coding
-* 2022-12-20: Small revision of code, checked that it works with latest PyTorch version
 """
 
 import torch
