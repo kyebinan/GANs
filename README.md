@@ -48,4 +48,5 @@ Hyperparameter Sensitivity: WGANs can be sensitive to the choice of hyperparamet
   <img src="https://github.com/kyebinan/GANs/assets/155234248/b1b4f4fb-da39-4cc7-92cf-ab920e328673" width="400" height="400" alt="MNIST Real"/>
 </p>
 
-### b- WGAN-GP
+### b- WGAN with Gradient Penalty  (WGAN-GP)
+What it is: WGAN-GP builds on the WGAN framework by introducing a gradient penalty term in the loss function to enforce the Lipschitz constraint more effectively, which further stabilizes training and improves the quality of generated samples.
