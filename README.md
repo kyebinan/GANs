@@ -50,3 +50,11 @@ Hyperparameter Sensitivity: WGANs can be sensitive to the choice of hyperparamet
 
 ### b- WGAN with Gradient Penalty  (WGAN-GP)
 What it is: WGAN-GP builds on the WGAN framework by introducing a gradient penalty term in the loss function to enforce the Lipschitz constraint more effectively, which further stabilizes training and improves the quality of generated samples.
+
+Pros:
+Enhanced Stability and Sample Quality: The gradient penalty helps in further stabilizing the training of WGANs and often results in higher quality samples by ensuring a smoother gradient flow.
+Eliminates Weight Clipping: By using a gradient penalty instead of weight clipping to enforce the Lipschitz constraint, WGAN-GP avoids potential issues like capacity underuse and exploding/vanishing gradients.
+
+Cons:
+Increased Computational Complexity: The introduction of the gradient penalty term increases the computational cost since it requires additional gradient computations during training.
+Tuning Required: While WGAN-GP reduces some of the hyperparameter sensitivity seen in WGAN, it introduces its own hyperparameters (like the penalty coefficient) that require careful tuning to achieve optimal performance.
