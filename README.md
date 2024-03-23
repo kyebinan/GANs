@@ -33,5 +33,9 @@ CycleGAN, short for Cycle-Consistent Generative Adversarial Network, introduces 
 Wasserstein Generative Adversarial Networks (Wasserstein GANs) stand out for their unique discriminator training strategy, which involves minimizing the Wasserstein distance between the generated and real data distributions. Proposed by Martin Arjovsky, Soumith Chintala, and Léon Bottou in the paper "Wasserstein GAN," this approach addresses some of the training instability issues associated with traditional GANs. Unlike traditional GANs, Wasserstein GANs provide a more meaningful and stable training signal by avoiding issues like mode collapse. The section dedicated to Wasserstein GANs in this repository explores their underlying architecture, training principles, and applications. Whether you're seeking a more stable alternative to traditional GANs or aiming to understand the Wasserstein distance concept, Wasserstein GANs offer a valuable perspective in the landscape of generative adversarial networks. Dive into the code, explore Wasserstein GANs, and discover their potential in generating high-quality, diverse samples.
 
 ### a- WGAN
+<p align="center">
+  <img src="https://github.com/kyebinan/GANs/assets/155234248/403a0980-85fa-4eca-8f49-28ba66ccf627" width="400" height="400" alt="MNIST Fake"/>
+  <img src="https://github.com/kyebinan/GANs/assets/155234248/b1b4f4fb-da39-4cc7-92cf-ab920e328673" width="400" height="400" alt="MNIST Real"/>
+</p>
 
 ### b- WGAN-GP
