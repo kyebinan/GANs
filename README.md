@@ -34,6 +34,15 @@ Wasserstein Generative Adversarial Networks (Wasserstein GANs) stand out for the
 
 ### a- WGAN
 What it is: The Wasserstein GAN (WGAN) introduces a novel way to measure the distance between the generator's distribution and the real data distribution using the Wasserstein distance, which helps in improving the stability of the training process and addresses issues like mode collapse seen in traditional GANs.
+
+Pros:
+Improved Stability: WGANs offer more stable training compared to traditional GANs, making it easier to train models without worrying about issues like vanishing gradients.
+Better Convergence Metrics: The Wasserstein distance provides a more meaningful measurement of the difference between the generated and real data distributions, allowing for more interpretable training progress.
+
+Cons:
+Computational Cost: The computation of the Wasserstein distance can be more demanding, leading to longer training times.
+Hyperparameter Sensitivity: WGANs can be sensitive to the choice of hyperparameters, such as the clipping parameter used to enforce the Lipschitz constraint, requiring careful tuning.
+
 <p align="center">
   <img src="https://github.com/kyebinan/GANs/assets/155234248/403a0980-85fa-4eca-8f49-28ba66ccf627" width="400" height="400" alt="MNIST Fake"/>
   <img src="https://github.com/kyebinan/GANs/assets/155234248/b1b4f4fb-da39-4cc7-92cf-ab920e328673" width="400" height="400" alt="MNIST Real"/>
