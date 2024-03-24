@@ -113,7 +113,7 @@ for epoch in range(NUM_EPOCHS):
         opt_gen.step()
 
         # Print losses occasionally and print to tensorboard
-        if batch_idx % 100 == 0 and batch_idx > 0:
+        if batch_idx % 100 == 0 :#and batch_idx > 0:
             print(
                 f"Epoch [{epoch}/{NUM_EPOCHS}] Batch {batch_idx}/{len(loader)} \
                   Loss D: {loss_critic:.4f}, loss G: {loss_gen:.4f}"
