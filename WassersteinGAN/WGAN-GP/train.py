@@ -17,27 +17,42 @@ from model import Discriminator, Generator, initialize_weights
 # Hyperparameters etc.
 device = "cuda" if torch.cuda.is_available() else "cpu"
 LEARNING_RATE = 1e-4
-BATCH_SIZE = 64
+BATCH_SIZE = 32
 IMAGE_SIZE = 64
-CHANNELS_IMG = 1
+CHANNELS_IMG = 3
 Z_DIM = 100
-NUM_EPOCHS = 128
+NUM_EPOCHS = 256
 FEATURES_CRITIC = 16
 FEATURES_GEN = 16
 CRITIC_ITERATIONS = 5
 LAMBDA_GP = 10
 
-transforms = transforms.Compose(
-    [
-        transforms.Resize(IMAGE_SIZE),
-        transforms.ToTensor(),
-        transforms.Normalize(
-            [0.5 for _ in range(CHANNELS_IMG)], [0.5 for _ in range(CHANNELS_IMG)]
-        ),
-    ]
-)
+# transforms = transforms.Compose(
+#     [
+#         transforms.Resize(IMAGE_SIZE),
+#         transforms.ToTensor(),
+#         transforms.Normalize(
+#             [0.5 for _ in range(CHANNELS_IMG)], [0.5 for _ in range(CHANNELS_IMG)]
+#         ),
+#     ]
+# )
 
-dataset = datasets.MNIST(root="dataset/", transform=transforms, download=True)
+transforms_pokemon = transforms.Compose([
+    # Data augmentation
+    transforms.RandomHorizontalFlip(p=1.0),  # Flip every image to get its mirror
+    transforms.RandomHorizontalFlip(p=0.5),  # Randomly flip images horizontally
+    transforms.RandomRotation(degrees=10),  # Randomly rotate images by +/- 10 degrees
+    transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),  # Randomly adjust brightness, contrast, saturation, and hue
+    
+    # Standard preprocessing
+    torchvision.transforms.Lambda(lambda img: img.convert('RGB')),
+    transforms.Resize(IMAGE_SIZE),
+    transforms.ToTensor(),
+    transforms.Normalize([0.5 for _ in range(CHANNELS_IMG)], [0.5 for _ in range(CHANNELS_IMG)]),
+])
+
+#dataset = datasets.MNIST(root="dataset/", transform=transforms, download=True)
+dataset = datasets.ImageFolder(root=f"../../DATA/pokemon/images/images", transform=transforms_pokemon)
 # comment mnist above and uncomment below for training on CelebA
 # dataset = datasets.ImageFolder(root="celeb_dataset", transform=transforms)
 loader = DataLoader(
@@ -59,8 +74,11 @@ opt_critic = optim.Adam(critic.parameters(), lr=LEARNING_RATE, betas=(0.0, 0.9))
 
 # for tensorboard plotting
 fixed_noise = torch.randn(32, Z_DIM, 1, 1).to(device)
-writer_real = SummaryWriter(f"logs/GAN_MNIST/real")
-writer_fake = SummaryWriter(f"logs/GAN_MNIST/fake")
+# writer_real = SummaryWriter(f"logs/GAN_MNIST/real")
+# writer_fake = SummaryWriter(f"logs/GAN_MNIST/fake")
+
+writer_real = SummaryWriter(f"logs/GAN_POKEMON/real")
+writer_fake = SummaryWriter(f"logs/GAN_POKEMON/fake")
 step = 0
 
 gen.train()
