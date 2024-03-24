@@ -41,9 +41,6 @@ Hyperparameter Sensitivity: WGANs can be sensitive to the choice of hyperparamet
 ### b- WGAN with Gradient Penalty  (WGAN-GP)
 What it is: WGAN-GP builds on the WGAN framework by introducing a gradient penalty term in the loss function to enforce the Lipschitz constraint more effectively, which further stabilizes training and improves the quality of generated samples.
 
-https://github.com/kyebinan/GANs/assets/155234248/293d2145-1904-4b07-bf2b-6ae5e050a4c6
-
-
 Pros:
 Enhanced Stability and Sample Quality: The gradient penalty helps in further stabilizing the training of WGANs and often results in higher quality samples by ensuring a smoother gradient flow.
 Eliminates Weight Clipping: By using a gradient penalty instead of weight clipping to enforce the Lipschitz constraint, WGAN-GP avoids potential issues like capacity underuse and exploding/vanishing gradients.
@@ -51,6 +48,8 @@ Eliminates Weight Clipping: By using a gradient penalty instead of weight clippi
 Cons:
 Increased Computational Complexity: The introduction of the gradient penalty term increases the computational cost since it requires additional gradient computations during training.
 Tuning Required: While WGAN-GP reduces some of the hyperparameter sensitivity seen in WGAN, it introduces its own hyperparameters (like the penalty coefficient) that require careful tuning to achieve optimal performance.
+
+https://github.com/kyebinan/GANs/assets/155234248/293d2145-1904-4b07-bf2b-6ae5e050a4c6
 
 ## 4- Conditional Generative Adversarial Networks (Conditional GAN)
 Conditional Generative Adversarial Networks, or Conditional GANs, represent a powerful variant of GANs designed to introduce control and directionality into the generative process. Unlike traditional GANs that generate data without specific constraints, Conditional GANs incorporate additional information, often in the form of labels or auxiliary data, to guide the generation process. This conditional input allows users to influence the characteristics of the generated samples. In the original Conditional GAN paper, titled "Conditional Generative Adversarial Nets" by Mehdi Mirza and Simon Osindero, the authors propose a novel architecture where both the generator and discriminator receive additional conditioning information. This conditioning can be used for tasks such as image-to-image translation, style transfer, and generating samples from specific classes. This section of the repository provides a detailed exploration of Conditional GANs, including their architecture, training process, and practical applications. Whether you're interested in adding specific attributes to generated images or exploring the intersection of GANs and conditional modeling, Conditional GANs offer an exciting avenue for experimentation and creative exploration. Dive into the code, understand the conditional input concept, and unlock the potential of conditional generative modeling.
